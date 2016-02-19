@@ -1,4 +1,4 @@
-package com.litc.rxtest;
+package com.litc.rxtest.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,9 +6,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.litc.rxtest.R;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import lomboktest.LombokTest;
+import com.litc.rxtest.lombok.LombokTest;
 
 public class MainActivity extends AppCompatActivity {
 

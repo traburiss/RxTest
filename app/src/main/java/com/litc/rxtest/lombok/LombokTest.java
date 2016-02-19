@@ -1,9 +1,8 @@
-package lomboktest;
+package com.litc.rxtest.lombok;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  * Created by Traburiss on 2016/2/19.
