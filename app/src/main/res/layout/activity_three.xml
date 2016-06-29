@@ -3,21 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <zrc.widget.ZrcListView
-        android:id="@+id/zr_three_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/btn_three">
-
-    </zrc.widget.ZrcListView>
-
     <Button
-        android:id="@+id/btn_three"
+        android:text="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:layout_gravity="bottom"
+        android:id="@+id/button3"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
+    <Button
+        android:text="2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/button3"
+        android:layout_toEndOf="@+id/button3"
+        android:id="@+id/button4" />
 </RelativeLayout>
