@@ -3,4 +3,5 @@
     <string name="butter_knife_test">Butter Knife 测试</string>
     <string name="lambda_test">Lambda 测试</string>
     <string name="lombok_test">Lombok 测试</string>
+    <string name="title_activity_second">SecondActivity</string>
 </resources>

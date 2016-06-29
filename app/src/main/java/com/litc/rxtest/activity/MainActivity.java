@@ -1,5 +1,6 @@
 package com.litc.rxtest.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rx.Observable;
+import rx.Observer;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.button2) Button button2;
     @Bind(R.id.button) Button button;
     @Bind(R.id.button5) Button button5;
+    @Bind(R.id.button6) Button button6;
 
     @Bind(R.id.editText) EditText editText;
 
@@ -82,6 +85,26 @@ public class MainActivity extends AppCompatActivity {
 
         RxView.clicks(button5)
                 .subscribe(this::button5Click);
+
+        RxView.clicks(button6).subscribe(new Observer<Void>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Void aVoid) {
+
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void Button2Click(Void v){
@@ -157,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
         newDealWithString(editText.getText().toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new mySubscriber<String>());
+                .subscribe(new mySubscriber<>());
     }
 
     private class mySubscriber<T> extends Subscriber<T>{
