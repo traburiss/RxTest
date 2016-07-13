@@ -39,10 +39,4 @@
         app:layout_anchor="@id/rv_second_test"
         app:layout_anchorGravity="bottom|right|end" />
 
-    <com.litc.rxtest.activity.zidingyiView
-        xmlns:test="http://schemas.android.com/apk/res/com.litc.rxtest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        test:zzz="hahahahahah"/>
-
 </android.support.design.widget.CoordinatorLayout>
