@@ -1,6 +1,7 @@
 package com.litc.rxtest.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +24,8 @@ import rx.Observable;
 public class SecondActivity extends AppCompatActivity {
 
     @Bind(R.id.toolbar) Toolbar toolbar;
+    @Bind(R.id.cl_toolbar) CollapsingToolbarLayout cl_toolbar;
+//    @Bind(R.id.iv_head) ImageView iv_head;
     @Bind(R.id.rv_second_test) RecyclerView rv_second_test;
     @Bind(R.id.fab) FloatingActionButton fab;
 
@@ -48,6 +51,10 @@ public class SecondActivity extends AppCompatActivity {
 
     private void initView(){
 
+        setSupportActionBar(toolbar);
+        cl_toolbar.setTitle("second_title");
+        cl_toolbar.setExpandedTitleColor(getResources().getColor(R.color.no_color));
+        cl_toolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
         adapter = new SecondAdapter(this, list);
         rv_second_test.setLayoutManager(new LinearLayoutManager(this));
         rv_second_test.setAdapter(adapter);

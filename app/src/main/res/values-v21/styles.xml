@@ -6,8 +6,7 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorRefreshBlue</item>
-        <item name="android:statusBarColor">?android:attr/colorPrimaryDark</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -15,6 +14,5 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorRefreshBlue</item>
-        <item name="android:statusBarColor">?android:attr/colorPrimaryDark</item>
     </style>
 </resources>
