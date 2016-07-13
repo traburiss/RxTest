@@ -48,7 +48,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void initDate() {
 
-
+//        HashMap<String, Object> hashMap = new HashMap<>();
+//        hashMap.put("a", "a");
+//        ArrayList<HashMap<String,String>> list = (ArrayList<HashMap<String, String>>) hashMap.get("a");
+//        HashMap<String,String> item = list.get(0);
     }
 
     private void initView() {
