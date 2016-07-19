@@ -17,7 +17,7 @@
             android:layout_height="250dp"
             app:contentScrim="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
             <ImageView

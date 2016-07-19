@@ -10,11 +10,16 @@ import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.litc.rxtest.R;
+import com.litc.rxtest.activity.service.AppServiceTest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
@@ -31,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.button) Button button;
     @Bind(R.id.button5) Button button5;
     @Bind(R.id.button6) Button button6;
+    @Bind(R.id.button3) Button button3;
 
     @Bind(R.id.editText) EditText editText;
 
@@ -108,6 +114,65 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        RxView.clicks(button3).subscribe(aVoid -> {
+
+            String send_params = "\"a\"";
+
+            Retrofit retrofit= new Retrofit.Builder()
+                    .baseUrl("http://192.168.31.207:8000")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .build();
+            AppServiceTest service = retrofit.create(AppServiceTest.class);
+
+//            get_info("1", send_params);
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(s -> Toast.makeText(this, s, Toast.LENGTH_SHORT).show());
+            service
+                    .get_info("2", send_params)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(new Subscriber<repo>() {
+//                        @Override
+//                        public void onCompleted() {
+//
+//                        }
+//
+//                        @Override
+//                        public void onError(Throwable e) {
+//
+//                            Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                        @Override
+//                        public void onNext(repo repo) {
+//
+//                            Toast.makeText(MainActivity.this, repo.toString(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+                    .subscribe(new Subscriber<HashMap<String, Object>>() {
+                        @Override
+                        public void onCompleted() {
+
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+
+                            Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onNext(HashMap<String, Object> stringObjectHashMap) {
+
+                            Toast.makeText(MainActivity.this, stringObjectHashMap.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
+        });
+
     }
 
     private void Button2Click(Void v){
@@ -116,6 +181,39 @@ public class MainActivity extends AppCompatActivity {
                 .map(s -> s + " litc")
                 .subscribe(s -> Toast.makeText(this, s, Toast.LENGTH_SHORT).show());
 
+    }
+
+    private void get_info(String function, String send_params){
+
+//        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://172.26.131.196:8000").build();
+//
+//        AppServiceTest appServiceTest = retrofit.create(AppServiceTest.class);
+//        Call<repo> result = appServiceTest.get_info(function, send_params);
+
+//        Retrofit retrofit= new Retrofit.Builder()
+//                .baseUrl("http://172.26.131.169:8000")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        AppServiceTest service = retrofit.create(AppServiceTest.class);
+//        Call<HashMap<String,Object>> model = service.get_info("1", "1");
+
+//        model.enqueue(new Callback<repo>() {
+//            @Override
+//            public void onResponse(Call<repo> call, Response<repo> response) {
+//
+////                return Observable.just(response.body().getLogin());
+//                Toast.makeText(MainActivity.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+//                Log.i("Retrofit", "success: " + response.body().toString());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<repo> call, Throwable t) {
+//
+//                Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
+//                Log.i("Retrofit", "error" + t.toString());
+////                return Observable.just("error");
+//            }
+//        });
     }
 
     private Observable<ArrayList<String>> query(String s){
