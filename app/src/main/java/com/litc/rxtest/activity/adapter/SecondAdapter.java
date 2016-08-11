@@ -12,7 +12,7 @@ import com.litc.rxtest.R;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -35,6 +35,7 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.SecondAdap
     @Override
     public SecondAdapterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
+        Integer i = 1;
         return new SecondAdapterHolder(LayoutInflater.from(context).inflate(R.layout.item_second, null, false));
     }
 
@@ -52,7 +53,7 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.SecondAdap
 
     public class SecondAdapterHolder extends RecyclerView.ViewHolder{
 
-        @Bind(R.id.textView) TextView textView;
+        @BindView(R.id.textView) TextView textView;
 
         public SecondAdapterHolder(View itemView) {
             super(itemView);

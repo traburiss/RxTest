@@ -17,17 +17,17 @@ import com.litc.rxtest.activity.adapter.SecondAdapter;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Observable;
 
 public class SecondActivity extends AppCompatActivity {
 
-    @Bind(R.id.toolbar) Toolbar toolbar;
-    @Bind(R.id.cl_toolbar) CollapsingToolbarLayout cl_toolbar;
-//    @Bind(R.id.iv_head) ImageView iv_head;
-    @Bind(R.id.rv_second_test) RecyclerView rv_second_test;
-    @Bind(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.cl_toolbar) CollapsingToolbarLayout cl_toolbar;
+//    @BindView(R.id.iv_head) ImageView iv_head;
+    @BindView(R.id.rv_second_test) RecyclerView rv_second_test;
+    @BindView(R.id.fab) FloatingActionButton fab;
 
     private ArrayList<String> list;
     private SecondAdapter adapter;

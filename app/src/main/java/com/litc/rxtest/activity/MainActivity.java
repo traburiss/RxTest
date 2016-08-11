@@ -11,11 +11,14 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding.view.RxView;
 import com.litc.rxtest.R;
 import com.litc.rxtest.activity.service.AppServiceTest;
+import com.litc.rxtest.activity.service.repo;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -28,17 +31,17 @@ import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.textView) TextView textView1;
-    @Bind(R.id.textView2) TextView textView2;
+    @BindView(R.id.textView) TextView textView1;
+    @BindView(R.id.textView2) TextView textView2;
 
-    @Bind(R.id.button1) Button button1;
-    @Bind(R.id.button2) Button button2;
-    @Bind(R.id.button) Button button;
-    @Bind(R.id.button5) Button button5;
-    @Bind(R.id.button6) Button button6;
-    @Bind(R.id.button3) Button button3;
+    @BindView(R.id.button1) Button button1;
+    @BindView(R.id.button2) Button button2;
+    @BindView(R.id.button) Button button;
+    @BindView(R.id.button5) Button button5;
+    @BindView(R.id.button6) Button button6;
+    @BindView(R.id.button3) Button button3;
 
-    @Bind(R.id.editText) EditText editText;
+    @BindView(R.id.editText) EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,10 +119,17 @@ public class MainActivity extends AppCompatActivity {
 
         RxView.clicks(button3).subscribe(aVoid -> {
 
-            String send_params = "\"a\"";
+//            String send_params = "\"a\"";
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("PAGE_SIZE", "1");
+                jsonObject.put("PAGE_NUM", "1");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
             Retrofit retrofit= new Retrofit.Builder()
-                    .baseUrl("http://192.168.31.207:8000")
+                    .baseUrl("http://172.26.131.200:8000")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build();
@@ -130,10 +140,32 @@ public class MainActivity extends AppCompatActivity {
 //                    .observeOn(AndroidSchedulers.mainThread())
 //                    .subscribe(s -> Toast.makeText(this, s, Toast.LENGTH_SHORT).show());
             service
-                    .get_info("2", send_params)
+                    .get_info("1", jsonObject.toString())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe(new Subscriber<repo>() {
+                    .subscribe(new Subscriber<repo>() {
+                        @Override
+                        public void onCompleted() {
+
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+
+                            e.printStackTrace();
+                            Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onNext(repo repo) {
+
+                            if(repo.getError_info().equalsIgnoreCase("success")){
+
+                                Toast.makeText(MainActivity.this, repo.toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+//                    .subscribe(new Subscriber<ArrayList>() {
 //                        @Override
 //                        public void onCompleted() {
 //
@@ -146,29 +178,11 @@ public class MainActivity extends AppCompatActivity {
 //                        }
 //
 //                        @Override
-//                        public void onNext(repo repo) {
+//                        public void onNext(ArrayList list) {
 //
-//                            Toast.makeText(MainActivity.this, repo.toString(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MainActivity.this, list.toString(), Toast.LENGTH_SHORT).show();
 //                        }
 //                    });
-                    .subscribe(new Subscriber<HashMap<String, Object>>() {
-                        @Override
-                        public void onCompleted() {
-
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-
-                            Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onNext(HashMap<String, Object> stringObjectHashMap) {
-
-                            Toast.makeText(MainActivity.this, stringObjectHashMap.toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
 
 
         });

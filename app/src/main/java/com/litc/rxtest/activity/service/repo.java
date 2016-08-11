@@ -1,5 +1,6 @@
 package com.litc.rxtest.activity.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -11,27 +12,27 @@ import java.util.HashMap;
 
 public class repo {
 
-    public String send_params;
-    public HashMap<String, Object> result;
+    public String error_info;
+    public ArrayList<HashMap<String,Object>> result;
 
-    public String getSend_params() {
-        return send_params;
+    public String getError_info() {
+        return error_info;
     }
 
-    public void setSend_params(String send_params) {
-        this.send_params = send_params;
+    public void setError_info(String error_info) {
+        this.error_info = error_info;
     }
 
-    public HashMap<String, Object> getResult() {
+    public ArrayList<HashMap<String,Object>> getResult() {
         return result;
     }
 
-    public void setResult(HashMap<String, Object> result) {
+    public void setResult(ArrayList<HashMap<String,Object>> result) {
         this.result = result;
     }
 
     @Override
     public String toString() {
-        return "result:" + result.toString() + "\tsendparams" + send_params;
+        return "error_info:" + error_info + "\tresult" + result.toString();
     }
 }
